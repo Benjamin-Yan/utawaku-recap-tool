@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f67e7d;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    transition: width .5s ease;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.top-bar {
+    padding: 20px 0 0 0;
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    align-items: center; /* 垂直置中 */
+}
+
+.main-form input {
+    width: 150px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #007ea8;
+    background-color: #ffb997;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.main-form label {
+    font-size: larger;
+}
+
+.main-form button {
+    margin: 25px auto;
+    display: block;
+    border-radius: 4px;
+    width: 25%;
+    height: 40px;
+    font-size: larger;
+    color: white;
+    background: transparent;
+    border: 2px solid #007ea8;
+}
+
+.main-form button:hover {
+    background: #007ea8;
+    color: white;
+    border: 2px solid white;
+}
+
