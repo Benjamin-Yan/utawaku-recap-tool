@@ -24,10 +24,7 @@ urlForm.addEventListener('submit', function (event) {
 });
 
 function onPlayerReady(event) {
-    urlForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        event.target.playVideo();
-    });
+    event.target.playVideo();
 }
 
 var i = 0;
