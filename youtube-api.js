@@ -25,7 +25,7 @@ goButton.addEventListener('click', function (event) {
 
 function onPlayerReady(event) {
     // 為確保瀏覽器上可以自動播放，要把影片調成靜音.mute().play
-    e.target.playVideo();
+    event.target.playVideo();
 }
 
 var i = 0;
