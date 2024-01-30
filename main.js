@@ -25,7 +25,6 @@ form.addEventListener('submit', function (event) {
         timelist.push(0, csvArray[i]);
     }
     const [start, end] = getTime(timelist);
-    viewer();
 
     // Clear the input field after submission
     inputs.value = '';
@@ -35,7 +34,8 @@ urlForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const url = urlIn.value;
-    const urlSplit = url.split('/');
+    const urlSplit = url.split('=');
     vidId = urlSplit[urlSplit.length - 1];
+    viewer();
 });
 
