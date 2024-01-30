@@ -12,14 +12,14 @@
 </head>
 
 <body>
-    <div class="top-bar">
+    <div class="title">
         <h2>歌枠 listener</h2>
     </div>
 
     <!-- 1.Timestamp -->
     <div class="row">
         <div class="column">
-            <form class="main-form" id="myForm">
+            <form class="form" id="timeForm">
                 <label>
                     Timestamp:
                     <input id="startTime" />
@@ -28,14 +28,14 @@
             </form>
         </div>
         <div class="column">
-            <ul id="myList"></ul>
+            <ul id="timeList"></ul>
         </div>
     </div>
 
     <!-- 2.Player -->
     <div class="row">
         <div class="column">
-            <form class="main-form" id="urlForm">
+            <form class="form" id="urlForm">
                 <label>
                     URL:
                     <input id="urlInput" />
@@ -48,7 +48,10 @@
         </div>
     </div>
 
-    <ul id="mt"></ul>
+    <hr/>
+
+    <button onclick="window.location.reload();">下一部影片</button>
+    <p>最近更新日期:&nbsp;2024.1.30</p>
     
     <!-- Scripts -->
     <script src="main.js"></script>

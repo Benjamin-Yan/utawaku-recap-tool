@@ -1,3 +1,7 @@
+const goButton = document.getElementById('goBut');
+const urlIn = document.getElementById('urlInput');
+var vidId;
+
 var tag = document.createElement('script');
 tag.src = "//www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -9,13 +13,16 @@ goButton.addEventListener('click', function (event) {
     event.preventDefault();
 
     const url = urlIn.value;
+    if (url.trim() === '') {return;}
+
     const urlSplit = url.split('=');
     vidId = urlSplit[urlSplit.length - 1];
+    urlIn.value = '';
     
     player = new YT.Player('player', {
-        height: '350',
-        width: '425',
-        videoId: vidId, //'BNdtdkObSP0',
+        // height: '350',
+        // width: '425',
+        videoId: vidId, // eg: 'BNdtdkObSP0',
         playerVars: { 'rel': 0, 'start': start[1], 'end': end[1]},
         events: {
             'onReady': onPlayerReady,

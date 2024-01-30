@@ -30,14 +30,14 @@ body {
     }
 }
 
-.top-bar {
+.title {
     padding: 20px 0 0 0;
     display: flex;
     justify-content: center; /* 水平置中 */
     align-items: center; /* 垂直置中 */
 }
 
-.main-form input {
+.form input {
     width: 150px;
     border-radius: 10px;
     outline: none;
@@ -47,11 +47,11 @@ body {
     text-align: center;
 }
 
-.main-form label {
+.form label {
     font-size: larger;
 }
 
-.main-form button {
+.form button, button {
     margin: 25px auto;
     display: block;
     border-radius: 4px;
@@ -63,9 +63,15 @@ body {
     border: 2px solid #007ea8;
 }
 
-.main-form button:hover {
+.form button:hover, button:hover {
     background: #007ea8;
     color: white;
     border: 2px solid white;
+}
+
+#player {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
 }
 
