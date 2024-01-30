@@ -1,6 +1,7 @@
 const form = document.getElementById('myForm');
 const inputs = document.getElementById('startTime');
 const myList = document.getElementById('myList');
+var start = [], end = [];
 
 const urlForm = document.getElementById('urlForm');
 const urlIn = document.getElementById('urlInput');
@@ -24,7 +25,7 @@ form.addEventListener('submit', function (event) {
         //showTime(csvArray[i]);
         timelist.push(0, csvArray[i]);
     }
-    const [start, end] = getTime(timelist);
+    [start, end] = getTime(timelist);
 
     // Clear the input field after submission
     inputs.value = '';
