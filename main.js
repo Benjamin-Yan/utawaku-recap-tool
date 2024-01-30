@@ -31,12 +31,11 @@ form.addEventListener('submit', function (event) {
     inputs.value = '';
 });
 
-urlForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+// urlForm.addEventListener('submit', function (event) {
+//     event.preventDefault();
 
-    const url = urlIn.value;
-    const urlSplit = url.split('=');
-    vidId = urlSplit[urlSplit.length - 1];
-    viewer();
-});
+//     const url = urlIn.value;
+//     const urlSplit = url.split('=');
+//     vidId = urlSplit[urlSplit.length - 1];
+// });
 
