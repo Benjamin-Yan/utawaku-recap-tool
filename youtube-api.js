@@ -20,9 +20,7 @@ goButton.addEventListener('click', function (event) {
     urlIn.value = '';
     
     player = new YT.Player('player', {
-        // height: '350',
-        // width: '425',
-        videoId: vidId, // eg: 'BNdtdkObSP0',
+        videoId: vidId, // eg: 'BNdtdkObSP0'
         playerVars: { 'rel': 0, 'start': start[1], 'end': end[1]},
         events: {
             'onReady': onPlayerReady,
