@@ -5,7 +5,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-urlForm.addEventListener('submit', function (event) {
+goButton.addEventListener('click', function (event) {
     event.preventDefault();
 
     const url = urlIn.value;
@@ -24,7 +24,8 @@ urlForm.addEventListener('submit', function (event) {
 });
 
 function onPlayerReady(event) {
-    event.target.playVideo();
+    // 為確保瀏覽器上可以自動播放，要把影片調成靜音.mute().play
+    e.target.playVideo();
 }
 
 var i = 0;

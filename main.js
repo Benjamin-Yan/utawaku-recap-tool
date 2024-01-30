@@ -3,7 +3,7 @@ const inputs = document.getElementById('startTime');
 const myList = document.getElementById('myList');
 var start = [], end = [];
 
-const urlForm = document.getElementById('urlForm');
+const goButton = document.getElementById('goBut');
 const urlIn = document.getElementById('urlInput');
 var vidId;
 
