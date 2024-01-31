@@ -53,12 +53,12 @@ function onPlayerStateChange(event) {
         return;
     }
     if (event.data == YT.PlayerState.ENDED) {
-        changeLiColor(idx);
         player.loadVideoById({
             videoId: vidId,
             startSeconds: start[idx],
             endSeconds: end[idx++]
         });
+        changeLiColor(idx);
     }
 }
 
