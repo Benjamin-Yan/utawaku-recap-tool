@@ -45,9 +45,15 @@ function changeLiColor(index) {
     index = Math.floor(index / 2);
     if (index < liItems.length) {
         liItems[index].style.color = '#663399';
-    }
-    if (index !== 0) {
+        liItems[index].textContent += ' -> now playing 🎵';
+    } else { // last one ended
         liItems[index-1].style.color = 'black';
+        liItems[index-1].textContent.replace(' -> now playing 🎵', '');
+    }
+
+    if (index !== 0) { // change back
+        liItems[index-1].style.color = 'black';
+        liItems[index-1].textContent.replace(' -> now playing 🎵', '');
     }
 }
 
