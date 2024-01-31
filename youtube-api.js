@@ -20,6 +20,7 @@ goButton.addEventListener('click', function (event) {
     vidId = urlSplit[urlSplit.length - 1];
     urlIn.value = '';
     
+    changeLiColor(1);
     startTime = performance.now();
     player = new YT.Player('player', {
         videoId: vidId, // eg: 'BNdtdkObSP0'
@@ -51,6 +52,7 @@ function onPlayerStateChange(event) {
         return;
     }
     if (event.data == YT.PlayerState.ENDED) {
+        changeLiColor(idx);
         player.loadVideoById({
             videoId: vidId,
             startSeconds: start[idx],

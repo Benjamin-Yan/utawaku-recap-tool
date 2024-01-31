@@ -3,6 +3,7 @@
 */
 var totalSeconds = 0;
 var allTimex = [], allTimey = [];
+const liItems = document.querySelectorAll('li');
 
 function getTime(list) {
     for (var i = 0; i < list.length; i++) {
@@ -39,5 +40,15 @@ function formatTime(secs) {
     formattedTime += `${seconds}秒`;
   
     return formattedTime;
-  }
+}
+
+function changeLiColor(index) {
+    index = Math.floor(index / 2);
+    if (index < liItems.length) {
+        liItems[index].style.color = '#663399';
+    }
+    if (index !== 0) {
+        liItems[index].style.color = 'black';
+    }
+}
 
