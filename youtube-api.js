@@ -48,8 +48,8 @@ function onPlayerStateChange(event) {
         const formattedtime = formatTime(time);
         const formattedexet = formatTime(executionTime);
 
-        document.getElementById('info').innerHTML = `影片長度: ${formattedtime}&nbsp;實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
-        changeLiColor(idx+2);
+        document.getElementById('info').innerHTML = `影片長度: ${formattedtime}&nbsp;；實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
+        changeLiColor(idx);
         return;
     }
     if (event.data == YT.PlayerState.ENDED) {
