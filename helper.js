@@ -41,19 +41,20 @@ function formatTime(secs) {
     return formattedTime;
 }
 
+const addiText = ' -> now playing 🎵';
 function changeLiColor(index) {
     index = Math.floor(index / 2);
-    liItems[index-1].textContent = liItems[index-1].textContent.replace(' -> now playing 🎵', '');
-
+    var curr = liItems[index], prev = liItems[index-1];
+    var has = prev.textContent.includes(addiText);
+    
     if (index < liItems.length) {
-        liItems[index].style.color = '#663399';
-        liItems[index].textContent += ' -> now playing 🎵';
-    } else { // last one ended
-        liItems[index-1].style.color = 'black';
+        curr.style.color = '#663399';
+        curr.textContent = curr.textContent.includes(addiText) ? curr.textContent : curr.textContent + addiText;
     }
-
+    
     if (index !== 0) { // change back
-        liItems[index-1].style.color = 'black';
+        prev.style.color = 'black';
+        if (has) {prev.textContent = prev.textContent.replace(/ -> now playing 🎵/g, '');}
     }
 }
 
