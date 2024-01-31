@@ -45,16 +45,15 @@ const addiText = ' -> now playing 🎵';
 function changeLiColor(index) {
     index = Math.floor(index / 2);
     var curr = liItems[index], prev = liItems[index-1];
-    var has = prev.textContent.includes(addiText);
     
     if (index < liItems.length) {
         curr.style.color = '#663399';
         curr.textContent = curr.textContent.includes(addiText) ? curr.textContent : curr.textContent + addiText;
     }
-    
+
     if (index !== 0) { // change back
         prev.style.color = 'black';
-        if (has) {prev.textContent = prev.textContent.replace(/ -> now playing 🎵/g, '');}
+        if (prev.textContent.includes(addiText)) {prev.textContent = prev.textContent.replace(/ -> now playing 🎵/g, '');}
     }
 }
 
