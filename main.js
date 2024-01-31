@@ -1,7 +1,7 @@
 const form = document.getElementById('timeForm');
 const inputs = document.getElementById('startTime');
 const timeList = document.getElementById('timeList');
-var start = [], end = [];
+var start = [], end = [], liItems = [];
 
 form.addEventListener('submit', function (event) {
     // Prevent the default form submission behavior
@@ -20,6 +20,7 @@ form.addEventListener('submit', function (event) {
         timelist.push(0, csvArray[i]);
     }
     [start, end] = getTime(timelist);
+    liItems = document.querySelectorAll('li'); // 此時才取得到 li 元素
 
     inputs.value = '';
 });

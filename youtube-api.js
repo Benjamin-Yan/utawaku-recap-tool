@@ -36,7 +36,6 @@ var time;
 function onPlayerReady(event) {
     time = player.getDuration();
     event.target.playVideo();
-    liItems = document.querySelectorAll('li'); // 此時才取得到 li 元素
 }
 
 var idx = 2;
