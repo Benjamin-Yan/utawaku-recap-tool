@@ -21,3 +21,23 @@ function getTime(list) {
     return [allTimex, allTimey];
 }
 
+function formatTime(secs) {
+    const hours = Math.floor(secs / 3600);
+    const minutes = Math.floor((secs % 3600) / 60);
+    const seconds = secs % 60;
+  
+    let formattedTime = '';
+  
+    if (hours > 0) {
+      formattedTime += `${hours}小時, `;
+    }
+  
+    if (minutes > 0 || hours > 0) {
+      formattedTime += `${minutes}分鐘, `;
+    }
+  
+    formattedTime += `${seconds}秒`;
+  
+    return formattedTime;
+  }
+
