@@ -40,7 +40,7 @@ function onPlayerReady(event) {
 
 var idx = 2;
 function onPlayerStateChange(event) {
-    if (idx === start.length && event.data !== YT.PlayerState.PAUSED) {
+    if (idx === start.length && event.data == YT.PlayerState.ENDED) {
         const endTime = performance.now();
         executionTime = Math.floor(endTime - startTime) / 1000; // 轉成秒
         const ratio = (time-executionTime) / time * 100;
