@@ -15,7 +15,7 @@ function getTime(list) {
             totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
             allTimex.push(totalSeconds);
-            allTimey.push(totalSeconds + 270);
+            allTimey.push(totalSeconds + 240);
         }
     }
     return [allTimex, allTimey];
