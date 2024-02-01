@@ -8,6 +8,12 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+a {text-decoration: none;}
+a:hover {
+    background: #007ea8;
+    color: #f5c378;
+}
+
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;

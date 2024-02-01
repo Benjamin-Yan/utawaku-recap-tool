@@ -10,7 +10,8 @@ form.addEventListener('submit', function (event) {
     const inputValue = inputs.value;
     if (inputValue.trim() === '') {return;}
 
-    const csvArray = (String(inputValue)).split(',');
+    const regex = /(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])/g;
+    const csvArray = inputValue.match(regex);
 
     var timelist = [];
     for (let i = 0; i < csvArray.length; i++) {
