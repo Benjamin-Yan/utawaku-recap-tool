@@ -1,6 +1,7 @@
 /* getTime([0, 10, 0, 30, 0, 70])
     return: `[ [0, 10, 0, 30, 0, 70], [0, 15, 0, 35, 0, 75] ]`
 */
+const Intervals = 240;
 function getTime(list) {
     var totalSeconds = 0;
     var allTimex = [], allTimey = [];
@@ -14,7 +15,7 @@ function getTime(list) {
             totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
             allTimex.push(totalSeconds);
-            allTimey.push(totalSeconds + 240);
+            allTimey.push(totalSeconds + Intervals);
         }
     }
     return [allTimex, allTimey];
