@@ -1,6 +1,7 @@
 const form = document.getElementById('timeForm');
 const inputs = document.getElementById('startTime');
 const timeList = document.getElementById('timeList');
+const loadExample = document.getElementById('loadExample');
 var start = [], end = [], liItems = [];
 var timelist = []; // allow continue typing until playback
 
@@ -24,5 +25,13 @@ form.addEventListener('submit', function (event) {
     liItems = document.querySelectorAll('li'); // 此時才取得到 li 元素
 
     inputs.value = '';
+});
+
+loadExample.addEventListener('click', function() {
+    inputs.value = "0:40,5:26,9:45,14:03,19:00";
+    form.submit();
+    startTimer(1); // sleep one second
+    urlIn.value = "https://www.youtube.com/watch?v=wM6gy5VZ6NI";
+    goButton.click();
 });
 

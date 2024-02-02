@@ -25,6 +25,7 @@ goButton.addEventListener('click', function (event) {
     urlIn.readOnly = true;
     goButton.disabled = true;
     submitButton.disabled = true;
+    loadExample.disabled = true;
     
     changeLiColor(1);
     startTime = performance.now();
