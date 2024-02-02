@@ -1,5 +1,6 @@
 const goButton = document.getElementById('goBut');
 const urlIn = document.getElementById('urlInput');
+const submitButton = document.getElementById('submitButton');
 var vidId;
 var startTime, executionTime;
 
@@ -16,9 +17,14 @@ goButton.addEventListener('click', function (event) {
     const url = urlIn.value;
     if (url.trim() === '') {return;}
 
-    const urlSplit = url.split('=');
-    vidId = urlSplit[urlSplit.length - 1];
-    urlIn.value = '';
+    const urlRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/;
+    vidId = ( url.match(urlRegex) )[1];
+
+    inputs.readOnly = true; // block time input
+    urlIn.value = `?v=${vidId}`; // block url input
+    urlIn.readOnly = true;
+    goButton.disabled = true;
+    submitButton.disabled = true;
     
     changeLiColor(1);
     startTime = performance.now();
