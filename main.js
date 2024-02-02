@@ -30,8 +30,7 @@ form.addEventListener('submit', function (event) {
 
 loadExample.addEventListener('click', function() {
     inputs.value = "0:40,5:26,9:45,14:03,19:00";
-    form.submit();
-    startTimer(1); // sleep one second
+    submitButton.click();
     urlIn.value = "https://www.youtube.com/watch?v=wM6gy5VZ6NI";
     goButton.click();
 });

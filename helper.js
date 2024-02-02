@@ -56,7 +56,3 @@ function changeLiColor(index) {
     }
 }
 
-function startTimer(x) {
-    setTimeout(console.log(`Sleep for ${x} second`), 1000*x);
-}
-
