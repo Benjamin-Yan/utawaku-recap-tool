@@ -3,7 +3,7 @@
 如果你也時間不夠，或是想要掛機聽歌，但又不想一直點時間戳記的人(就是我XD)，那你絕對可以試試看這個工具!
 
 ### How to use
-請先到 <a href="https://benjamin-yan.github.io/utawakuViewer/" target="_blank">此網站</a>
+請先到 [此網站](https://benjamin-yan.github.io/utawakuViewer/)
 1. 先輸入想看的時間，格式為 `CSV`，eg: `1:10:00,05:09,10:03`
 2. 再來填上影片的連結，按下 `GO!` 即可。
 3. 如果想要換下一步影片，請按 `變更影片`
