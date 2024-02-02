@@ -1,10 +1,9 @@
 /* getTime([0, 10, 0, 30, 0, 70])
     return: `[ [0, 10, 0, 30, 0, 70], [0, 15, 0, 35, 0, 75] ]`
 */
-var totalSeconds = 0;
-var allTimex = [], allTimey = [];
-
 function getTime(list) {
+    var totalSeconds = 0;
+    var allTimex = [], allTimey = [];
     for (var i = 0; i < list.length; i++) {
         if(list[i] === 0) {
             allTimex.push(0);

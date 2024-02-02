@@ -5,6 +5,8 @@ const loadExample = document.getElementById('loadExample');
 var start = [], end = [], liItems = [];
 var timelist = []; // allow continue typing until playback
 
+const regex = /(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])/g;
+
 form.addEventListener('submit', function (event) {
     // Prevent the default form submission behavior
     event.preventDefault();
@@ -12,7 +14,6 @@ form.addEventListener('submit', function (event) {
     const inputValue = inputs.value;
     if (inputValue.trim() === '') {return;}
 
-    const regex = /(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])/g;
     const csvArray = inputValue.match(regex);
 
     for (let i = 0; i < csvArray.length; i++) {
