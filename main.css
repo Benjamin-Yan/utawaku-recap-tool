@@ -85,7 +85,7 @@ a:hover {
     margin-left: 15px;
 }
 
-button:disabled, input:disabled {
+button:disabled, input:read-only {
     cursor: not-allowed;
 }
 
