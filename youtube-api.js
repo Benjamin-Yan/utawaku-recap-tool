@@ -2,7 +2,7 @@ const goButton = document.getElementById('goBut');
 const urlIn = document.getElementById('urlInput');
 const submitButton = document.getElementById('submitButton');
 var vidId;
-var startTime, executionTime;
+var startTime, executionTime, endTime;
 
 var tag = document.createElement('script');
 tag.src = "//www.youtube.com/iframe_api";
@@ -28,6 +28,7 @@ goButton.addEventListener('click', function (event) {
     loadExample.disabled = true;
     
     changeLiColor(1);
+    executionTime = 0;
     startTime = performance.now();
     player = new YT.Player('player', {
         videoId: vidId, // eg: 'BNdtdkObSP0'
@@ -48,14 +49,19 @@ function onPlayerReady(event) {
 var idx = 2;
 function onPlayerStateChange(event) {
     if (idx === start.length && event.data == YT.PlayerState.ENDED) {
-        const endTime = performance.now();
-        executionTime = Math.floor( (endTime - startTime) / 1000 ); // 轉成秒
+        endTime = performance.now();
+        executionTime += Math.floor( (endTime - startTime) / 1000 ); // 轉成秒
         const ratio = parseFloat( ((time-executionTime) / time * 100 ).toFixed(2));
         
         const formattedtime = formatTime(time);
         const formattedexet = formatTime(executionTime);
 
-        document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
+        var temptext = "省下";
+        if (ratio < 0) {
+            temptext = "多花";
+            ratio *= -1;
+        }
+        document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共${temptext}了 ${ratio}% 的時間`;
         changeLiColor(idx);
         return;
     }
@@ -66,6 +72,11 @@ function onPlayerStateChange(event) {
             startSeconds: start[idx],
             endSeconds: end[idx++]
         });
+    }
+    if (event.data == YT.PlayerState.PAUSED) {
+        endTime = performance.now(); // temp stop
+        executionTime += Math.floor( (endTime - startTime) / 1000 );
+        startTime = performance.now(); // restart
     }
 }
 
