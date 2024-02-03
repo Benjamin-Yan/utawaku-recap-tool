@@ -73,9 +73,12 @@ function onPlayerStateChange(event) {
             endSeconds: end[idx++]
         });
     }
+    
     if (event.data == YT.PlayerState.PAUSED) {
         endTime = performance.now(); // temp stop
         executionTime += Math.floor( (endTime - startTime) / 1000 );
+    }
+    if (event.data == YT.PlayerState.PLAYING) {
         startTime = performance.now(); // restart
     }
 }
