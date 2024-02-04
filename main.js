@@ -14,7 +14,9 @@ form.addEventListener('submit', function (event) {
     const inputValue = inputs.value;
     if (inputValue.trim() === '') {return;}
 
-    const csvArray = inputValue.match(regex);
+    var csvArray = [];
+    if (inputValue === '0') {csvArray = ['0:00'];}
+    else {csvArray = inputValue.match(regex);}
 
     for (let i = 0; i < csvArray.length; i++) {
         const newItem = document.createElement('li');
@@ -30,7 +32,12 @@ form.addEventListener('submit', function (event) {
 
 loadExample.addEventListener('click', function() {
     inputs.value = "0:40,5:26,9:45,14:03,19:00";
+    while (timeList.firstChild) {
+        timeList.removeChild(timeList.firstChild); // 刪除之前填寫的 if have
+    }
+    timelist = [];
     submitButton.click();
+
     urlIn.value = "https://www.youtube.com/watch?v=wM6gy5VZ6NI";
     goButton.click();
 });

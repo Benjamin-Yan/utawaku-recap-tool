@@ -21,7 +21,7 @@ goButton.addEventListener('click', function (event) {
     vidId = ( url.match(urlRegex) )[1];
 
     inputs.readOnly = true; // block time input
-    urlIn.value = `?v=${vidId}`; // block url input
+    urlIn.value = `Id = ${vidId}`; // block url input
     urlIn.readOnly = true;
     goButton.disabled = true;
     submitButton.disabled = true;
@@ -56,12 +56,7 @@ function onPlayerStateChange(event) {
         const formattedtime = formatTime(time);
         const formattedexet = formatTime(executionTime);
 
-        var temptext = "省下";
-        if (ratio < 0) {
-            temptext = "多花";
-            ratio *= -1;
-        }
-        document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共${temptext}了 ${ratio}% 的時間`;
+        document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
         changeLiColor(idx);
         return;
     }
