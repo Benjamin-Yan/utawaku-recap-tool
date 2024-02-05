@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <title>歌枠 listener</title>
+    <title>歌枠 viewing tool</title>
     <link rel="stylesheet" href="main.css">
     <script src="helper.js"></script>
 </head>
 
 <body>
     <div class="title">
-        <h2>歌枠 listener</h2>
+        <h2>歌枠 viewing tool</h2>
         <button id="loadExample">載入範例</button>
     </div>
 
@@ -29,6 +29,7 @@
             </form>
         </div>
         <div class="column">
+            <button id="nextBtn" onclick="setNext();" disabled>快轉到下首歌曲</button>
             <ul id="timeList"></ul>
         </div>
     </div>
@@ -61,6 +62,8 @@
             <p id="info"></p>
         </div>
     </div>
+
+    <p>&copy; 2024 歌枠 viewing tool | 作者：太陽餅</p>
     
     <!-- Scripts -->
     <script src="main.js"></script>

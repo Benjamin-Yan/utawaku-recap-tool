@@ -1,6 +1,7 @@
 const goButton = document.getElementById('goBut');
 const urlIn = document.getElementById('urlInput');
 const submitButton = document.getElementById('submitButton');
+const nextBtn = document.getElementById('nextBtn');
 var vidId;
 var startTime, executionTime, endTime;
 
@@ -16,16 +17,29 @@ goButton.addEventListener('click', function (event) {
 
     const url = urlIn.value;
     if (url.trim() === '') {return;}
+    if (start.length === 0) {alert("請先輸入時間!");}
 
     const urlRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/;
     vidId = ( url.match(urlRegex) )[1];
 
+    var tmperr = "";
+    fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${vidId}&format=json`)
+        .then(res => res.json())
+        .then(data => {
+            tmperr = data.title;
+        })
+        .catch(error => tmperr = "發生錯誤");
+    const titleRegex = /【([^【】]+)】/g;
+    tmperr = tmperr.replace(titleRegex, '');
+
     inputs.readOnly = true; // block time input
-    urlIn.value = `Id = ${vidId}`; // block url input
-    urlIn.readOnly = true;
+    if (tmperr === "發生錯誤") {urlIn.value = `Id = ${vidId}`;}
+    else {urlIn.value = tmperr;}
+    urlIn.readOnly = true; // block url input
     goButton.disabled = true;
     submitButton.disabled = true;
     loadExample.disabled = true;
+    nextBtn.disabled = false;
     
     changeLiColor(1);
     executionTime = 0;
@@ -76,5 +90,10 @@ function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING) {
         startTime = performance.now(); // restart
     }
+}
+
+function setNext() {
+    const tmptme = start[idx]-1;
+    player.seekTo(tmptme);
 }
 
