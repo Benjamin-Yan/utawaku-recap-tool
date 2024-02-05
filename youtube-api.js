@@ -27,15 +27,15 @@ goButton.addEventListener('click', function (event) {
         .then(res => res.json())
         .then(data => {
             tmperr = data.title;
+            const titleRegex = /【([^【】]+)】/g;
+            tmperr = tmperr.replace(titleRegex, '');
+            if (tmperr === "發生錯誤") {urlIn.value = `Id = ${vidId}`;}
+            else {urlIn.value = tmperr;}
+            urlIn.readOnly = true; // block url input
         })
         .catch(error => tmperr = "發生錯誤");
-    const titleRegex = /【([^【】]+)】/g;
-    tmperr = tmperr.replace(titleRegex, '');
 
     inputs.readOnly = true; // block time input
-    if (tmperr === "發生錯誤") {urlIn.value = `Id = ${vidId}`;}
-    else {urlIn.value = tmperr;}
-    urlIn.readOnly = true; // block url input
     goButton.disabled = true;
     submitButton.disabled = true;
     loadExample.disabled = true;
@@ -72,6 +72,7 @@ function onPlayerStateChange(event) {
 
         document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
         changeLiColor(idx);
+        nextBtn.disabled = true;
         return;
     }
     if (event.data == YT.PlayerState.ENDED) {
@@ -93,7 +94,7 @@ function onPlayerStateChange(event) {
 }
 
 function setNext() {
-    const tmptme = start[idx]-1;
+    const tmptme = start[idx-1]-1;
     player.seekTo(tmptme);
 }
 
