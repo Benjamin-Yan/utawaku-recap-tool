@@ -48,7 +48,7 @@ goButton.addEventListener('click', function (event) {
     startTime = performance.now();
     player = new YT.Player('player', {
         videoId: vidId, // eg: 'BNdtdkObSP0'
-        playerVars: { 'rel': 0, 'start': start[1], 'end': end[1]},
+        playerVars: { 'rel': 0, 'controls': 0, 'disablekb': 1, 'start': start[1], 'end': end[1]},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange

@@ -53,7 +53,7 @@ function changeLiColor(index) {
 
     if (index !== 0) { // change back
         prev.style.color = 'black';
-        if (prev.textContent.includes(addiText)) {prev.textContent = prev.textContent.replace(/ -> now playing 🎵/g, '');}
+        if (prev.textContent.includes(addiText)) {prev.textContent = prev.textContent.replace(/ → now playing 🎵/g, '');}
     }
 }
 
