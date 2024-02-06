@@ -85,6 +85,10 @@ a:hover {
 #loadExample {
     margin-left: 15px;
 }
+#nextBtn {
+    margin-left: 40px;
+    margin-top: 2px;
+}
 
 button:disabled {
     cursor: not-allowed;
