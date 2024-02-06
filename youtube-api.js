@@ -96,7 +96,7 @@ function onPlayerStateChange(event) {
 }
 
 function setNext() {
-    const tmptme = end[idx-1]-1;
+    const tmptme = end[idx-1];
     player.seekTo(tmptme);
 }
 
