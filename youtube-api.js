@@ -2,7 +2,7 @@ const goButton = document.getElementById('goBut');
 const urlIn = document.getElementById('urlInput');
 const submitButton = document.getElementById('submitButton');
 const nextBtn = document.getElementById('nextBtn');
-var vidId;
+var vidId, tmperr;
 var startTime, executionTime, endTime;
 
 var tag = document.createElement('script');
@@ -22,20 +22,22 @@ goButton.addEventListener('click', function (event) {
     const urlRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/;
     vidId = ( url.match(urlRegex) )[1];
 
-    var tmperr = "";
     fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${vidId}&format=json`)
         .then(res => res.json())
         .then(data => {
             tmperr = data.title;
             const titleRegex = /【([^【】]+)】/g;
             tmperr = tmperr.replace(titleRegex, '');
-            if (tmperr === "發生錯誤") {urlIn.value = `Id = ${vidId}`;}
-            else {urlIn.value = tmperr;}
-            urlIn.readOnly = true; // block url input
+            setTxt();
         })
-        .catch(error => tmperr = "發生錯誤");
+        .catch(error => {
+            console.log("取得title發生錯誤");
+            tmperr = "發生錯誤";
+        });
 
     inputs.readOnly = true; // block time input
+    urlIn.value = `Id = ${vidId}`;
+    urlIn.readOnly = true; // block url input
     goButton.disabled = true;
     submitButton.disabled = true;
     loadExample.disabled = true;
@@ -94,7 +96,11 @@ function onPlayerStateChange(event) {
 }
 
 function setNext() {
-    const tmptme = start[idx-1]-1;
+    const tmptme = start[idx+1]-1;
     player.seekTo(tmptme);
+}
+
+function setTxt() {
+    if (tmperr !== "發生錯誤") {urlIn.value = tmperr;}
 }
 
