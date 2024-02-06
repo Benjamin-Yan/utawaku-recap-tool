@@ -41,7 +41,7 @@ function formatTime(secs) {
     return formattedTime;
 }
 
-const addiText = ' -> now playing 🎵';
+const addiText = ' → now playing 🎵';
 function changeLiColor(index) {
     index = Math.floor(index / 2);
     var curr = liItems[index], prev = liItems[index-1];
