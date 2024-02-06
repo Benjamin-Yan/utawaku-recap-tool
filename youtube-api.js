@@ -44,7 +44,7 @@ goButton.addEventListener('click', function (event) {
     nextBtn.disabled = false;
     
     changeLiColor(1);
-    executionTime = 0;
+    executionTime = 0; // initial
     startTime = performance.now();
     player = new YT.Player('player', {
         videoId: vidId, // eg: 'BNdtdkObSP0'
@@ -63,6 +63,7 @@ function onPlayerReady(event) {
 }
 
 var idx = 2;
+let isPlayerPaused = false;
 function onPlayerStateChange(event) {
     if (idx === start.length && event.data == YT.PlayerState.ENDED) {
         endTime = performance.now();
@@ -89,9 +90,11 @@ function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PAUSED) {
         endTime = performance.now(); // temp stop
         executionTime += Math.floor( (endTime - startTime) / 1000 );
+        isPlayerPaused = true;
     }
-    if (event.data == YT.PlayerState.PLAYING) {
+    if (isPlayerPaused && event.data == YT.PlayerState.PLAYING) {
         startTime = performance.now(); // restart
+        isPlayerPaused = false;
     }
 }
 
