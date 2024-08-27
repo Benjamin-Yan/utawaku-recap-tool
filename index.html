@@ -4,66 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <title>歌枠 viewing tool</title>
-    <link rel="stylesheet" href="main.css">
+    <title>Utawaku Recap Tool</title>
+    <link rel="stylesheet" href="style.css">
     <script src="helper.js"></script>
 </head>
 
 <body>
-    <div class="title">
-        <h2>歌枠 viewing tool</h2>
-        <button id="loadExample">載入範例</button>
-    </div>
+    <h1>歌枠回顧工具</h1>
 
-    <!-- 1.Timestamp -->
     <div class="row">
         <div class="column">
-            <form class="form" id="timeForm">
-                <label>
-                    Timestamp:
-                    <input id="startTime" />
-                </label>
-                <button type="submit" id="submitButton">Add</button>
-            </form>
+            <div class="section">
+                <p class="stitle">Time stamp & Info.</p>
+                <ol>
+                    <li>填上每首歌的起始時間 (可重複填寫)</li>
+                    <input type="text" placeholder="輸入時間" />
+                    <button>Add</button>
+
+                    <li>時間總覽</li>
+                    <button id="bbtn" disabled>快轉到下首歌曲</button>
+                    <ul id="timeList"></ul>
+
+                    <li>相關資訊</li>
+                    <ul>
+                        <li>這是一款專為 VTuber 唱歌直播（歌枠）設計的回顧工具。使用此工具，您可以輕鬆地回顧和整理過去的歌回內容，快速找到直播中的關鍵時刻和精華部分。</li>
+                        <li>使用說明: <a href="https://benjamin-yan.github.io/歌枠-viewing-tool-使用指南/" target="_blank">歌枠-viewing-tool-使用指南</a></li>
+                        <li>最近更新日期: 2024.8.27</li>
+                    </ul>
+                </ol>
+            </div>
         </div>
         <div class="column">
-            <ul id="timeList"></ul>
-            <button id="nextBtn" onclick="setNext();" disabled>快轉到下首歌曲</button>
+            <div class="section">
+                <p class="stitle">歌回預覽</p>
+                <ol>
+                    <li>填上歌回 Youtube 網址</li>
+                    <input type="text" placeholder="輸入 URL" />
+                    <button>Go!</button>
+
+                    <li>歌回將自動於下方播放</li>
+                    <div id="player"></div>
+
+                    <li>播放統計</li>
+                    <p id="info">將於歌回撥放完畢後顯示於此。</p>
+                </ol>
+                <hr/>
+                <div class="btngroup">
+                    <button>變更影片</button><button>載入範例</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- 2.Player -->
-    <div class="row">
-        <div class="column">
-            <form class="form" id="urlForm">
-                <label>
-                    URL:
-                    <input id="urlInput" />
-                </label>
-                <button type="button" id="goBut">GO!</button>
-            </form>
-        </div>
-        <div class="column">
-            <div id="player"></div>
-        </div>
-    </div>
-
-    <hr/>
-    <button onclick="window.location.reload();" class="btn">變更影片</button>
-    
-    <!-- 3.Info -->
-    <div class="row" style="margin-bottom: 15px;">
-        <div class="column">
-            <p>說明請點<a href="https://benjamin-yan.github.io/歌枠-viewing-tool-使用指南/" target="_blank">此連結</a><br/>最近更新日期:&nbsp;2024.2.7</p>
-        </div>
-        <div class="column">
-            <p id="info"></p>
-        </div>
-    </div>
-
-    <p>&copy; 2024 歌枠 viewing tool | 作者：太陽餅</p>
+    <p id="cprt">&copy; 2024 歌枠 viewing tool | 作者：太陽餅</p>
     
     <!-- Scripts -->
     <script src="main.js"></script>

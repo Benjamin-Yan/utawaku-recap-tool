@@ -3,9 +3,9 @@
 */
 const Intervals = 240;
 function getTime(list) {
-    var totalSeconds = 0;
-    var allTimex = [], allTimey = [];
-    for (var i = 0; i < list.length; i++) {
+    let totalSeconds = 0;
+    let allTimex = [], allTimey = [];
+    for (let i = 0; i < list.length; i++) {
         if(list[i] === 0) {
             allTimex.push(0);
             allTimey.push(0);
@@ -44,7 +44,7 @@ function formatTime(secs) {
 const addiText = ' → now playing 🎵';
 function changeLiColor(index) {
     index = Math.floor(index / 2);
-    var curr = liItems[index], prev = liItems[index-1];
+    let curr = liItems[index], prev = liItems[index-1];
     
     if (index < liItems.length) {
         curr.style.color = '#663399';

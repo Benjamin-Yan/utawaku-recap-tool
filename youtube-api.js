@@ -1,47 +1,40 @@
-const goButton = document.getElementById('goBut');
-const urlIn = document.getElementById('urlInput');
-const submitButton = document.getElementById('submitButton');
-const nextBtn = document.getElementById('nextBtn');
-var vidId, tmperr;
-var startTime, executionTime, endTime;
+// Define
+let vidId, tmperr;
+let time, startTime, executionTime, endTime;
 
-var tag = document.createElement('script');
-tag.src = "//www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
+const urlRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/;
+const titleRegex = /【([^【】]+)】/g;
+
+// Youtube api
+let tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player;
+let player;
 
-goButton.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    const url = urlIn.value;
-    if (url.trim() === '') {return;}
-    if (start.length === 0) {alert("請先輸入時間!");}
-
-    const urlRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/;
+// Main functions
+function loadVideo(url) {
     vidId = ( url.match(urlRegex) )[1];
 
     fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${vidId}&format=json`)
-        .then(res => res.json())
+        .then(r => r.json())
         .then(data => {
             tmperr = data.title;
-            const titleRegex = /【([^【】]+)】/g;
             tmperr = tmperr.replace(titleRegex, '');
-            setTxt();
+            allInput[1].value = tmperr;
         })
         .catch(error => {
-            console.log("取得title發生錯誤");
-            tmperr = "發生錯誤";
+            console.log("取得title發生錯誤: "+error);
         });
 
-    inputs.readOnly = true; // block time input
-    urlIn.value = `Id = ${vidId}`;
-    urlIn.readOnly = true; // block url input
-    goButton.disabled = true;
-    submitButton.disabled = true;
-    loadExample.disabled = true;
-    nextBtn.disabled = false;
+    allInput[0].readOnly = true;
+    allInput[1].readOnly = true;
+    allInput[1].value = `Id = ${vidId}`; // temp placeholder until title loaded
+    allButton[0].disabled = true;
+    allButton[1].disabled = false;
+    allButton[2].disabled = true;
+    allButton[4].disabled = true;
     
     changeLiColor(1);
     executionTime = 0; // initial
@@ -54,15 +47,14 @@ goButton.addEventListener('click', function (event) {
             'onStateChange': onPlayerStateChange
         }
     });
-});
+}
 
-var time;
 function onPlayerReady(event) {
     time = player.getDuration();
     event.target.playVideo();
 }
 
-var idx = 2;
+let idx = 2;
 let isPlayerPaused = false;
 function onPlayerStateChange(event) {
     if (idx === start.length && event.data == YT.PlayerState.ENDED) {
@@ -75,7 +67,7 @@ function onPlayerStateChange(event) {
 
         document.getElementById('info').innerHTML = `影片長度: ${formattedtime};&nbsp;實際聆聽時長: ${formattedexet}<br/>共省下了 ${ratio}% 的時間`;
         changeLiColor(idx);
-        nextBtn.disabled = true;
+        allButton[1].disabled = true;
         return;
     }
     if (event.data == YT.PlayerState.ENDED) {
@@ -103,7 +95,16 @@ function setNext() {
     player.seekTo(tmptme);
 }
 
-function setTxt() {
-    if (tmperr !== "發生錯誤") {urlIn.value = tmperr;}
-}
+// Button trigger
+allButton[1].addEventListener('click', function() {
+    setNext();
+});
+
+allButton[2].addEventListener('click', function() {
+    const url = allInput[1].value;
+    if (url.trim() === '') {alert("請先輸入網址!");return;}
+    if (start.length === 0) {alert("請先輸入時間!");return;}
+    document.getElementById("player").style.width = '100%';
+    loadVideo(url);
+});
 
